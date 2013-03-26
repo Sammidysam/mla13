@@ -4,6 +4,7 @@
 \usepackage{csquotes}
 \usepackage[style=mla,mladraft=true]{biblatex}
 \usepackage{color}
+\usepackage{hyperref}
 \newcommand{\sources}[1]{
   \def\@sources{#1}
   \addbibresource{#1}
@@ -45,7 +46,7 @@
 \@professor\\
 \@class\\
 \datef\@date
-\begin{center}
+\begin{center}\pdfbookmark{\@title}{\@title}
 \@title
 \end{center}
 \endgroup}
@@ -53,7 +54,7 @@
 
 \newcommand*{\makeworkscited}{\begingroup
 \pagebreak
-\begin{center}
+\begin{center}\pdfbookmark{Works Cited}{Works Cited}
 Works Cited
 \end{center}
 \printbibliography[heading=apa]
