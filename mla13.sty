@@ -1,77 +1,16 @@
 \ProvidesPackage{mla13}
-%\usepackage{fullpage}
 \usepackage[letterpaper]{geometry}
-%\usepackage[style=mla,backend=biber]{biblatex}
-%\usepackage{biblatex}
 \usepackage[american]{babel}
 \usepackage{csquotes}
 \usepackage[style=mla,mladraft=true]{biblatex}
 \usepackage{color}
 \newcommand{\sources}[1]{
   \def\@sources{#1}
-  \bibliography{#1}
+  \addbibresource{#1}
 }
-%Bibliography Commands
-\DeclareFieldFormat{ibidpostnote}{#1}%
-\newbibmacro*{cite:idem}{%
-  \ifsingletitle%
-    {\iffieldundef{postnote}%
-      {\usebibmacro{cite:name}}%
-      {\unspace\global\boolfalse{cbx@named}}}%
-    {\addspace\global\boolfalse{cbx@named}}}
-\newbibmacro*{cite:mla:title:internal}{% 0.7.1 new internal macro
-  \ifbool{cbx@named}%
-    {\unspace\addcomma\addspace}%
-    {}%
-  \iffieldundef{title}%
-    {\iffieldequalstr{entrytype}{review}%
-      {\printtext[bibhyperref]{\printtext{\bibstring{reviewof}%
-       \addspace\printfield{booktitle}}}}%
-      {\ifthenelse{\iffieldequalstr{entrytype}{suppbook}% 0.7.1
-         \OR\iffieldequalstr{entrytype}{suppcollection}}%
-        {\printtext[bibhyperref]{%
-         \printfield[mla:capital]{entrysubtype}}}%
-        {}}}%
-    {\printtext[bibhyperref]{%
-       \printfield[citetitle:\strfield{entrytype}]{labeltitle}}}}%
-\newbibmacro*{cite:mla:title}{% 0.7.1 tidied up
-  \unspace%
-  \ifnameundef{labelname}%
-    {\unspace%
-     \printtext[bibhyperref]{%
-       \printfield[citetitle:\strfield{entrytype}]{labeltitle}}%
-     \iffieldundef{postnote}%
-       {}%
-       {\addspace}}%
-    {\ifsingletitle%
-      {}%
-      {\usebibmacro{cite:mla:title:internal}\addspace}}%
-  \ifthenelse{\iffieldequalstr{entrytype}{review}%
-      \and\ifnameundef{author}%
-      \and\iffieldundef{title}}%
-    {\printtext[bibhyperref]%
-      {\unspace\printtext{\bibcpstring{reviewof}%
-       \addspace\printfield{booktitle}}}}%
-    {}}%
-\DeclareCiteCommand{\cite}[\mkbibparens]
-  {\usebibmacro{prenote}}%
-  {\usebibmacro{citeindex}%
-   \usebibmacro{cite:mla}}{}
-  {\usebibmacro{postnote}}
+
 \defbibheading{apa}[\refname]{}
-%End Bibliography Commands
-%remove parenthesis from bibliography
-\renewbibmacro*{issue+date}{%
-  \setunit{\addcomma\space}% NEW
-%  \printtext[parens]{% DELETED
-    \iffieldundef{issue}
-      {\usebibmacro{date}}
-      {\printfield{issue}%
-       \setunit*{\addspace}%
-%       \usebibmacro{date}}}% DELETED
-       \usebibmacro{date}}% NEW
-  \newunit}
-%end section
+
 
 \geometry{top=1.0in,bottom=1.0in,left=1.0in,right=1.0in}
 \usepackage{datetime}
@@ -110,6 +49,8 @@
 \@title
 \end{center}
 \endgroup}
+
+
 \newcommand*{\makeworkscited}{\begingroup
 \pagebreak
 \begin{center}
