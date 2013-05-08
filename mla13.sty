@@ -2,9 +2,11 @@
 \usepackage[letterpaper]{geometry}
 \usepackage[american]{babel}
 \usepackage{csquotes}
-\DeclareOption*{%
-      \PassOptionsToPackage{\CurrentOption}{biblatex}%
+\DeclareOption{annotation}{%
+      \PassOptionsToPackage{annotation}{biblatex}%
    }
+\ProcessOptions\relax
+\setlength{\parindent}{0.5in}
 \usepackage[style=mla,mladraft=true]{biblatex}
 \usepackage{color}
 \usepackage{hyperref}
@@ -64,7 +66,6 @@
 
 \pagestyle{empty}
 \pagestyle{fancy}
-\setlength{\parindent}{0.5in}
 \fancyhf{}
 \fancyhead{}
 \renewcommand{\headrulewidth}{0pt}
