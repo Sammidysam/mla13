@@ -89,11 +89,11 @@
 \newcommand*{\makeworkscited}{\printbibliography[heading=mla]}
 
 \renewenvironment{quote}
-  {\list{}{\vspace{-0.59em}\setlength{\leftmargin}{1in}}%
+  {\list{}{\topsep=0pt\setlength{\leftmargin}{1in}\parsep        \z@ \@plus\p@}%
    \item\relax}
   {\endlist}
 
 \renewenvironment{quotation}
-  {\list{}{\listparindent=0.25in\itemindent=\listparindent\vspace{-0.59em}\setlength{\leftmargin}{1in}}%
+  {\list{}{\listparindent=0.25in\itemindent=\listparindent\topsep=0pt\setlength{\leftmargin}{1in}\parsep        \z@ \@plus\p@}%
    \item\relax}
   {\endlist}
