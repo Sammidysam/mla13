@@ -2,6 +2,9 @@
 \usepackage[letterpaper]{geometry}
 \usepackage[american]{babel}
 \usepackage{csquotes}
+\DeclareOption*{%
+      \PassOptionsToPackage{\CurrentOption}{biblatex}%
+   }
 \usepackage[style=mla,mladraft=true]{biblatex}
 \usepackage{color}
 \usepackage{hyperref}
