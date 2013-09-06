@@ -16,7 +16,7 @@
 }
 \usepackage{times}
 
-%Formatting Commands
+% formatting commands
 \renewcommand \thesection {\@arabic\c@section.}
 \renewcommand\thesubsection   {\thesection\@arabic\c@subsection}
 \renewcommand\section{\@startsection{section}{1}{\z@}%
@@ -98,3 +98,8 @@
   {\list{}{\listparindent=0.25in\itemindent=\listparindent\topsep=0pt\setlength{\leftmargin}{1in}\parsep        \z@ \@plus\p@}%
    \item\relax}
   {\endlist}
+
+% no one wants to explicitly call those two, right?
+% works cited is not created if no bibliography file is stated
+\AtBeginDocument{\makeheader\newlength{\saveparindent}\setlength{\saveparindent}{\parindent}\raggedright\setlength{\parindent}{\saveparindent}}
+\AtEndDocument{\makeworkscited}
