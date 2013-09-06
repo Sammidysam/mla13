@@ -5,9 +5,9 @@ A LaTeX MLA style formatter package that allows users to create MLA style docume
 
 # How to Install #
 
-## Manually ##
+Download the `.sty` file and place it in the texmf folder for use with all of your LaTeX file needs. If you just want to use it on one project, just place it in your project folder for local access.
 
-If you want to install the package manually (because you want to or you have not a mac) then just download the `.sty` file and place it in the texmf folder for use with all of your LaTeX file needs. If you just want to use it on one project, just place it in your project folder for local access.
+An automatic installation script for Fedora Linux will be coming soon.
 
 # How to Use #
 
@@ -54,13 +54,15 @@ that fits with MLA citation style. Here is an example of how to use this command
 No Page Number: `\cite{Name of Source}`
 Page Number: `\cite[Page]{Name of Source}`
 
+The works cited page will automatically be created at `\end{document}` if the sources file is specified.  If not, it will not be created.
+
 Note that Biber must be installed for BibTeX support to work correctly.
 
 ## Changing the Date of the File ##
 
 If you want to use a date other than the current date, the only way is to manually input the correctly
 formatted date using the standard date attribute provided by LaTeX. For example, place the following
-before begindocument:
+before `\begin{document}`:
 
     \date{5 February 2013}
 This follows the format of MLA such that:
