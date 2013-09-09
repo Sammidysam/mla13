@@ -98,6 +98,18 @@
   {\list{}{\listparindent=0.25in\itemindent=\listparindent\topsep=0pt\setlength{\leftmargin}{1in}\parsep        \z@ \@plus\p@}%
    \item\relax}
   {\endlist}
+  
+\renewcommand{\theenumi}{\Roman{enumi}. }
+\renewcommand{\labelenumi}{\theenumi}
+
+\renewcommand{\theenumii}{\Alph{enumii}. }
+\renewcommand{\labelenumii}{\theenumii}
+
+\renewcommand{\theenumiii}{\arabic{enumiii}. }
+\renewcommand{\labelenumiii}{\theenumiii}
+
+\renewcommand{\theenumiv}{\alph{enumiv}. }
+\renewcommand{\labelenumiv}{\theenumiv}
 
 % no one wants to explicitly call those two, right?
 % works cited is not created if no bibliography file is stated
