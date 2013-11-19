@@ -81,7 +81,8 @@
 \@professor\\
 \@class\\
 \datef\@date
-\begin{center}\pdfbookmark{\@title}{\@title}
+\begin{center}%\pdfbookmark{\@title}{\@title}
+  % \pdfbookmark breaks with command in title, such as \textit
 \@title
 \end{center}
 \endgroup}
