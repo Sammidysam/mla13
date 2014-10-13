@@ -8,7 +8,7 @@
    }
 \ProcessOptions\relax
 \setlength{\parindent}{0.5in}
-\usepackage[style=mla,mladraft=true,backend=biber]{biblatex}
+\usepackage[style=mla,mladraft=true]{biblatex}
 \usepackage{color}
 \usepackage{hyperref}
 \newcommand{\sources}[1]{
@@ -101,18 +101,20 @@
   {\list{}{\listparindent=0.25in\itemindent=\listparindent\topsep=0pt\setlength{\leftmargin}{1in}\parsep        \z@ \@plus\p@}%
    \item\relax}
   {\endlist}
+
+\newcommand{\outlinemode}{
+  \renewcommand{\theenumi}{\Roman{enumi}. }
+  \renewcommand{\labelenumi}{\theenumi}
+
+  \renewcommand{\theenumii}{\Alph{enumii}. }
+  \renewcommand{\labelenumii}{\theenumii}
   
-\renewcommand{\theenumi}{\Roman{enumi}. }
-\renewcommand{\labelenumi}{\theenumi}
-
-\renewcommand{\theenumii}{\Alph{enumii}. }
-\renewcommand{\labelenumii}{\theenumii}
-
-\renewcommand{\theenumiii}{\arabic{enumiii}. }
-\renewcommand{\labelenumiii}{\theenumiii}
-
-\renewcommand{\theenumiv}{\alph{enumiv}. }
-\renewcommand{\labelenumiv}{\theenumiv}
+  \renewcommand{\theenumiii}{\arabic{enumiii}. }
+  \renewcommand{\labelenumiii}{\theenumiii}
+  
+  \renewcommand{\theenumiv}{\alph{enumiv}. }
+  \renewcommand{\labelenumiv}{\theenumiv}
+}
 
 % no one wants to explicitly call those two, right?
 % works cited is not created if no bibliography file is stated
