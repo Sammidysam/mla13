@@ -3,12 +3,9 @@
 \usepackage[letterpaper]{geometry}
 \usepackage[american]{babel}
 \usepackage{csquotes}
-\DeclareOption{annotation}{%
-      \PassOptionsToPackage{annotation}{biblatex}%
-   }
-\ProcessOptions\relax
+\usepackage[doublespacing]{setspace}
 \setlength{\parindent}{0.5in}
-\usepackage[style=mla,mladraft=true]{biblatex}
+\usepackage[style=mla,mladraft=true,annotation=true]{biblatex}
 \usepackage{color}
 \usepackage{hyperref}
 \newcommand{\sources}[1]{
@@ -17,15 +14,17 @@
 }
 \usepackage{times}
 \usepackage{titling}
-\usepackage[doublespacing]{setspace}
 
-% formatting commands
+%removes the space added to the center enviornment
+\newenvironment{nospacecenter}{\parskip=0pt\par\nopagebreak\centering}{\par\noindent\ignorespacesafterend}
+
+%Formatting Commands
 \renewcommand \thesection {\@arabic\c@section.}
 \renewcommand\thesubsection   {\thesection\@arabic\c@subsection}
 \renewcommand\section{\@startsection{section}{1}{\z@}%
                                     {\z@}%
                                     {\lineskip}%
-                                    {\center}}
+                                    {\normalfont}}
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
                                        {\z@}%
                                        {\lineskip}%
@@ -43,11 +42,87 @@
                                          {\lineskip}%
                                          {\normalfont}}
 
-\defbibheading{mla}[Works Cited]{%
-    \pagebreak%
-	\begin{center}\pdfbookmark{Works Cited}{Works Cited}%
-	Works Cited%
-	\end{center}}
+%Bibliography Commands
+\DeclareFieldFormat{ibidpostnote}{#1}%
+\newbibmacro*{cite:idem}{%
+  \ifsingletitle%
+    {\iffieldundef{postnote}%
+      {\usebibmacro{cite:name}}%
+      {\unspace\global\boolfalse{cbx@named}}}%
+    {\addspace\global\boolfalse{cbx@named}}}
+\newbibmacro*{cite:mla:title:internal}{% 0.7.1 new internal macro
+  \ifbool{cbx@named}%
+    {\unspace\addcomma\addspace}%
+    {}%
+  \iffieldundef{title}%
+    {\iffieldequalstr{entrytype}{review}%
+      {\printtext[bibhyperref]{\printtext{\bibstring{reviewof}%
+       \addspace\printfield{booktitle}}}}%
+      {\ifthenelse{\iffieldequalstr{entrytype}{suppbook}% 0.7.1
+         \OR\iffieldequalstr{entrytype}{suppcollection}}%
+        {\printtext[bibhyperref]{%
+         \printfield[mla:capital]{entrysubtype}}}%
+        {}}}%
+    {\printtext[bibhyperref]{%
+       \printfield[citetitle:\strfield{entrytype}]{labeltitle}}}}%
+\newbibmacro*{cite:mla:title}{% 0.7.1 tidied up
+  \unspace%
+  \ifnameundef{labelname}%
+    {\unspace%
+     \printtext[bibhyperref]{%
+       \printfield[citetitle:\strfield{entrytype}]{labeltitle}}%
+     \iffieldundef{postnote}%
+       {}%
+       {\addspace}}%
+    {\ifsingletitle%
+      {}%
+      {\usebibmacro{cite:mla:title:internal}\addspace}}%
+  \ifthenelse{\iffieldequalstr{entrytype}{review}%
+      \and\ifnameundef{author}%
+      \and\iffieldundef{title}}%
+    {\printtext[bibhyperref]%
+      {\unspace\printtext{\bibcpstring{reviewof}%
+       \addspace\printfield{booktitle}}}}%
+    {}}%
+\DeclareCiteCommand{\cite}[\mkbibparens]
+  {\usebibmacro{prenote}}%
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite:mla}}{}
+  {\usebibmacro{postnote}}
+\defbibheading{apa}[\refname]{}
+
+%Annotations for the Bibliography
+\renewbibmacro{finentry}{%Renew the annotation macro
+   \finentry
+   \iffieldundef{annotation}%
+     {}%
+     {\ifbool{bbx@annotation}%
+       {\begin{quotation}\noindent%Make the annotation look like a quotation and remove the indent
+          \printfield{annotation}%
+        \end{quotation}}%
+       {}}%
+}
+%End Annotation Section
+
+% Formatting Section Headings
+\def\section{\@startsection{section}{1}{\z@}{-5.25ex plus -1ex minus
+-.2ex}{1.5ex plus .2ex}{\center}}
+\def\thesection{\arabic{section}.}
+% End Formatting Section Headings
+
+%End Bibliography Commands
+%remove parenthesis from bibliography
+%\renewbibmacro*{issue+date}{%
+%  \setunit{\addcomma\space}% NEW
+%  \printtext[parens]{% DELETED
+%    \iffieldundef{issue}
+%      {\usebibmacro{date}}
+%      {\printfield{issue}%
+%       \setunit*{\addspace}%
+%       \usebibmacro{date}}}% DELETED
+%       \usebibmacro{date}}% NEW
+%  \newunit}
+%end section
 
 \geometry{top=1.0in,bottom=1.0in,left=1.0in,right=1.0in}
 \usepackage{datetime}
@@ -82,10 +157,9 @@
 \noindent \@professor\\
 \noindent \@class\\
 \noindent \datef\@date
-\begin{center}%\pdfbookmark{\@title}{\@title}
-  % \pdfbookmark breaks with command in title, such as \textit
+\begin{nospacecenter}
 \@title
-\end{center}
+\end{nospacecenter}
 \endgroup}
 % \author{\@firstname\ \@lastname}
 % \renewcommand{\@maketitle}{\makeheader}% JMC- not yet working with header

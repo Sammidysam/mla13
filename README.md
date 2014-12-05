@@ -31,12 +31,12 @@ process below:
     \class{The Name of Your Class}
     \title{The Title of Your Paper}
 
-The above code simply sets all of the data values for later use in the paper. The header will automatically be created when you type `\begin{document}`.
+The above code simply sets all of the data values for later use in the paper.
+The header will automatically be created when you type `\begin{document}`.
 
 ## Paragraph Formatting ##
 
-Paragraph formatting is standard and coincides with the measures put in place by MLA style. The font used
-in Times New Roman and is of size 12. The justification is left justified.
+Paragraph formatting is standard and coincides with the measures put in place by MLA style. The font used is Times New Roman and is of size 12. The justification is left justified.
 
 ## Citing and Sources ##
 
@@ -65,8 +65,9 @@ formatted date using the standard date attribute provided by LaTeX. For example,
 before `\begin{document}`:
 
     \date{5 February 2013}
+    
 This follows the format of MLA such that:
 
     \date{DAY MONTH YEAR}
+    
 Otherwise, to use the current date, do not include the date field inside of your file.
-
