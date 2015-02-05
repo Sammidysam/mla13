@@ -164,7 +164,13 @@
 % \author{\@firstname\ \@lastname}
 % \renewcommand{\@maketitle}{\makeheader}% JMC- not yet working with header
 
-\newcommand*{\makeworkscited}{\printbibliography[heading=apa]}
+\newcommand*{\makeworkscited}{\begingroup
+  \pagebreak
+  \begin{center}
+    Works Cited
+  \end{center}
+  \printbibliography[heading=apa]
+\endgroup}
 
 \renewenvironment{quote}
   {\list{}{\topsep=0pt\setlength{\leftmargin}{1in}\parsep        \z@ \@plus\p@}%
