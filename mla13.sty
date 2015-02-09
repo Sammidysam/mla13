@@ -90,6 +90,11 @@
    \usebibmacro{cite:mla}}{}
   {\usebibmacro{postnote}}
 \defbibheading{apa}[\refname]{}
+\defbibheading{mla}[Works Cited]{%
+\pagebreak%
+\begin{center}\pdfbookmark{Works Cited}{Works Cited}%
+Works Cited%
+\end{center}}
 
 %Annotations for the Bibliography
 \renewbibmacro{finentry}{%Renew the annotation macro
@@ -164,13 +169,7 @@
 % \author{\@firstname\ \@lastname}
 % \renewcommand{\@maketitle}{\makeheader}% JMC- not yet working with header
 
-\newcommand*{\makeworkscited}{\begingroup
-  \pagebreak
-  \begin{center}
-    Works Cited
-  \end{center}
-  \printbibliography[heading=apa]
-\endgroup}
+\newcommand*{\makeworkscited}{\printbibliography[heading=mla]}
 
 \renewenvironment{quote}
   {\list{}{\topsep=0pt\setlength{\leftmargin}{1in}\parsep        \z@ \@plus\p@}%
